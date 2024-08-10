@@ -1,0 +1,27 @@
+{
+  "name": "seubarrigatests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test --project=chrome --grep \"@CADASTRO\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hrqlv/seuBarrigaTests.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hrqlv/seuBarrigaTests/issues"
+  },
+  "homepage": "https://github.com/Hrqlv/seuBarrigaTests#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.46.0",
+    "@types/node": "^22.2.0"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  }
+}
