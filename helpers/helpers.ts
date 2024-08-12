@@ -16,21 +16,21 @@ export interface Usuario {
 
 export function criarUsuario(quantidadeUsuarios = 1): Usuario[] {
   const usuarios = Array.from({ length: quantidadeUsuarios }, (): Usuario => {
-    const nome = fakerBR.name.firstName();
-    const sobrenome = fakerBR.name.lastName();
+      const nome = fakerBR.name.firstName();
+      const sobrenome = fakerBR.name.lastName();
 
-    return {
-      nome: nome,
-      sobrenome: sobrenome,
-      email: gerarEmailAleatorio(sobrenome),
-      telefone: fakerBR.phone.phoneNumber('11#########'),
-      telefonePT: fakerBR.phone.phoneNumber('9########'),
-      cpf: fakerBR.br.cpf(),
-      cnpj: fakerBR.br.cnpj(),
-      senha: login.senha,
-      nomeCompleto: gerarNomeCompleto(nome, sobrenome),
-      dataNascimento: gerarDataNascimento(),
-    };
+      return {
+          nome: nome,
+          sobrenome: sobrenome,
+          email: gerarEmailComNome(nome),
+          telefone: fakerBR.phone.phoneNumber('11#########'),
+          telefonePT: fakerBR.phone.phoneNumber('9########'),
+          cpf: fakerBR.br.cpf(),
+          cnpj: fakerBR.br.cnpj(),
+          senha: gerarSenhaAleatoria(),
+          nomeCompleto: gerarNomeCompleto(nome, sobrenome),
+          dataNascimento: gerarDataNascimento(),
+      };
   });
 
   return usuarios;
@@ -44,8 +44,8 @@ export function gerarNomeCompleto(nome: string, sobrenome: string): string {
   return `${nome} ${sobrenome}`;
 }
 
-export function gerarEmailAleatorio(sobrenome: string): string {
-  return `qa+${formatarNome(sobrenome)}_${Date.now()}@gipsyy.com`;
+export function gerarEmailComNome(nome: string): string {
+  return `qa${nome}_${Date.now()}@test.com`;
 }
 
 export function gerarDataNascimento(): string {
@@ -55,4 +55,8 @@ export function gerarDataNascimento(): string {
   const ano = data.getFullYear();
 
   return `${dia}/${mes}/${ano}`;
+}
+
+export function gerarSenhaAleatoria(tamanho: number = 8): string {
+  return faker.internet.password(tamanho, false, /[a-zA-Z0-9!@#$%^&*()_+]/);
 }
