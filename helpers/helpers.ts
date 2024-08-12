@@ -36,10 +36,6 @@ export function criarUsuario(quantidadeUsuarios = 1): Usuario[] {
   return usuarios;
 }
 
-export function formatarNome(str: string): string {
-  return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').charAt(0).toLowerCase() + str.slice(1);
-}
-
 export function gerarNomeCompleto(nome: string, sobrenome: string): string {
   return `${nome} ${sobrenome}`;
 }
@@ -56,8 +52,4 @@ export function gerarDataNascimento(): string {
   const ano = data.getFullYear();
 
   return `${dia}/${mes}/${ano}`;
-}
-
-export function gerarSenhaAleatoria(tamanho: number = 8): string {
-  return faker.internet.password(tamanho, false, /[a-zA-Z0-9!@#$%^&*()_+]/);
 }
