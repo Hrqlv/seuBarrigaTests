@@ -9,10 +9,6 @@ export class LoginPage {
         this.locatorMensagemErro = 'div[class*="alert-danger"]'
     }
 
-    async goTo() {
-        await this.page.goto('https://seubarriga.wcaquino.me/cadastro');
-    }
-
     async clicarEmLogin() {
         await this.page.locator('a[href="/login"]').click()
     }

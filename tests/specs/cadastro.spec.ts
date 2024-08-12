@@ -7,7 +7,8 @@ let usuarioCadastrado: { email: string, senha: string };
 test.describe('[SeuBarriga] Realizar fluxos de cadastro positivo e negativo @CADASTRO', async () => {
   test.beforeEach(async ({ page }) => {
     cadastroPage = new CadastroPage(page);
-    cadastroPage.goTo()
+    await page.goto('/')
+    await cadastroPage.clicarNovoUsuario()
   })
 
   test('Realizar cadastro com dados válidos', async ({ page }) => {

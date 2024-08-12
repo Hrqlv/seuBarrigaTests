@@ -7,12 +7,12 @@ let loginPage: any
 test.describe('[SeuBarriga] Realizar fluxos de login positivo e negativo @LOGIN', async () => {
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
-    loginPage.goTo()
+    await page.goto('/')
+    await loginPage.clicarEmLogin()
   })
 
   test('Realizar login com dados válidos', async ({ page }) => {
     await test.step('Preencher os campos email e senha, apertar em entrar e validar a mensagem de sucesso', async () => {
-        await loginPage.clicarEmLogin()
         await loginPage.realizarLogin(login.email, login.senha);
         await loginPage.clicarEmEntrar()
         await loginPage.validarMensagemDeSucesso()

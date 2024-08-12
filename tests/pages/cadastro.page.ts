@@ -10,10 +10,6 @@ export class CadastroPage {
         this.locatorMensagemErro = 'div[class*="alert-danger"]'
     }
 
-    async goTo() {
-        await this.page.goto('https://seubarriga.wcaquino.me/cadastro');
-    }
-
     async cadastrarUsuarioAleatorio(): Promise<{ email: string, senha: string }> {
         const usuario = criarUsuario()[0];  
         await this.preecherDadosValidos(usuario.nome, usuario.email, usuario.senha);
