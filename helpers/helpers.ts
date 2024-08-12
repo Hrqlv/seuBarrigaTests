@@ -27,7 +27,7 @@ export function criarUsuario(quantidadeUsuarios = 1): Usuario[] {
           telefonePT: fakerBR.phone.phoneNumber('9########'),
           cpf: fakerBR.br.cpf(),
           cnpj: fakerBR.br.cnpj(),
-          senha: gerarSenhaAleatoria(),
+          senha: login.senha,
           nomeCompleto: gerarNomeCompleto(nome, sobrenome),
           dataNascimento: gerarDataNascimento(),
       };
@@ -45,7 +45,8 @@ export function gerarNomeCompleto(nome: string, sobrenome: string): string {
 }
 
 export function gerarEmailComNome(nome: string): string {
-  return `qa${nome}_${Date.now()}@test.com`;
+  const nomeSemAcentos = nome.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    return `qa${nomeSemAcentos}_${Date.now()}@gmail.com`;
 }
 
 export function gerarDataNascimento(): string {

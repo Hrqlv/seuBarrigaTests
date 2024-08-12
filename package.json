@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npx playwright test --project=chrome --grep \"@CADASTRO\""
+    "cadastro": "npx playwright test --project=chrome --grep \"@CADASTRO\"",
+    "login": "npx playwright test --project=chrome --grep \"@LOGIN\"",
+    "test": "npx playwright test --grep \"@CADASTRO|@LOGIN\""
   },
   "repository": {
     "type": "git",
