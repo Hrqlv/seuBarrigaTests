@@ -8,7 +8,6 @@ test.describe('[SeuBarriga] Realizar fluxos de login positivo e negativo @LOGIN'
   test.beforeEach(async ({ page }) => {
     loginPage = new LoginPage(page);
     await page.goto('/')
-    await loginPage.clicarEmLogin()
   })
 
   test('Realizar login com dados válidos', async ({ page }) => {
@@ -18,12 +17,18 @@ test.describe('[SeuBarriga] Realizar fluxos de login positivo e negativo @LOGIN'
         await loginPage.validarMensagemDeSucesso()
     })
 
-    await test.step('Validar as mensagens de erro', async () => {
+    await test.step('Validar as mensagens de erro para usuario e senha errada', async () => {
         await loginPage.clicarEmSair()
         await loginPage.realizarLogin('qaTest@gmail','qa');
         await loginPage.clicarEmEntrar()
-        await loginPage.validarMensagemDeErro()
+        await loginPage.validarMensagemDeErroParaUsuarioSenhaErrada()
     })
+
+    await test.step('Validar todas as mensagens de erro para campos obrigatórios', async () => {
+      await loginPage.realizarLogin('','');
+      await loginPage.clicarEmEntrar()
+      await loginPage.validarTodasAsMensagensErros()
+  })
   });
 })
 

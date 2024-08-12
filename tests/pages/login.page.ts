@@ -30,7 +30,12 @@ export class LoginPage {
         await this.page.locator('a[href="/logout"]').click()
     }
 
-    async validarMensagemDeErro() {
+    async validarMensagemDeErroParaUsuarioSenhaErrada() {
         await expect(this.page.locator(this.locatorMensagemErro).filter({ hasText: 'Problemas com o login do usuário' })).toBeVisible()
+    }
+
+    async validarTodasAsMensagensErros() {
+        await expect(this.page.locator(this.locatorMensagemErro).filter({ hasText: 'Email é um campo obrigatório' })).toBeVisible()
+        await expect(this.page.locator(this.locatorMensagemErro).filter({ hasText: 'Senha é um campo obrigatório' })).toBeVisible()
     }
 }
